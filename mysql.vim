@@ -1,7 +1,7 @@
 " Vim syntax file
 " Language:     mysql
 " Maintainer:   Kenneth J. Pronovici <pronovic@ieee.org>
-" Last Change:  2002 Apr 16
+" Last Change:  $Date: 2002/04/17 19:19:37 $
 " Filenames:    *.mysql
 " URL:          ftp://cedar-solutions.com/software/mysql.vim
 " Note:         The definitions below are taken from the mysql user manual as of April 2002, for version 3.23
@@ -20,31 +20,31 @@ syn case ignore
 " General keywords which don't fall into other categories
 syn keyword mysqlKeyword         action add after aggregate all alter as asc auto_increment avg avg_row_length
 syn keyword mysqlKeyword         both by
-syn keyword mysqlKeyword         cascade case change character check checksum column columns comment constraint create cross
+syn keyword mysqlKeyword         cascade change character check checksum column columns comment constraint create cross
 syn keyword mysqlKeyword         current_date current_time current_timestamp
-syn keyword mysqlKeyword         data database databases day day_hour day_minute dayofmonth dayofweek dayofyear day_second
+syn keyword mysqlKeyword         data database databases day day_hour day_minute day_second
 syn keyword mysqlKeyword         default delayed delay_key_write delete desc describe distinct distinctrow drop
-syn keyword mysqlKeyword         else enclosed end escape escaped explain
+syn keyword mysqlKeyword         enclosed escape escaped explain
 syn keyword mysqlKeyword         fields file first flush for foreign from full function
 syn keyword mysqlKeyword         global grant grants group
 syn keyword mysqlKeyword         having heap high_priority hosts hour hour_minute hour_second
-syn keyword mysqlKeyword         identified if ignore index infile inner insert insert_id interval into is isam
+syn keyword mysqlKeyword         identified ignore index infile inner insert insert_id into isam
 syn keyword mysqlKeyword         join
-syn keyword mysqlKeyword         key keys kill last_insert_id leading left length limit lines load local lock logs long 
+syn keyword mysqlKeyword         key keys kill last_insert_id leading left limit lines load local lock logs long 
 syn keyword mysqlKeyword         low_priority
-syn keyword mysqlKeyword         match max max_rows middleint min_rows minute minute_second modify month monthname myisam
-syn keyword mysqlKeyword         natural no null 
+syn keyword mysqlKeyword         match max_rows middleint min_rows minute minute_second modify month myisam
+syn keyword mysqlKeyword         natural no
 syn keyword mysqlKeyword         on optimize option optionally order outer outfile
 syn keyword mysqlKeyword         pack_keys partial password primary privileges procedure process processlist
 syn keyword mysqlKeyword         read references reload rename replace restrict returns revoke row rows
 syn keyword mysqlKeyword         second select show shutdown soname sql_big_result sql_big_selects sql_big_tables sql_log_off
 syn keyword mysqlKeyword         sql_log_update sql_low_priority_updates sql_select_limit sql_small_result sql_warnings starting
 syn keyword mysqlKeyword         status straight_join string
-syn keyword mysqlKeyword         table tables temporary terminated then to trailing type
+syn keyword mysqlKeyword         table tables temporary terminated to trailing type
 syn keyword mysqlKeyword         unique unlock unsigned update usage use using
-syn keyword mysqlKeyword         values varbinary variables varying when
+syn keyword mysqlKeyword         values varbinary variables varying
 syn keyword mysqlKeyword         where with write
-syn keyword mysqlKeyword         year year_month
+syn keyword mysqlKeyword         year_month
 syn keyword mysqlKeyword         zerofill
 
 " Special values
@@ -57,12 +57,12 @@ syn region mysqlString           start=+'+  skip=+\\\\\|\\'+  end=+'+
 " Numbers and hexidecimal values
 syn match mysqlNumber            "-\=\<[0-9]*\>"
 syn match mysqlNumber            "-\=\<[0-9]*\.[0-9]*\>"
-syn match mysqlNumber            "-\=\<[0-9]*e[+-][0-9]*\>"
-syn match mysqlNumber            "-\=\<[0-9]*\.[0-9]*e[+-][0-9]*\>"
+syn match mysqlNumber            "-\=\<[0-9]*e[+-]\=[0-9]*\>"
+syn match mysqlNumber            "-\=\<[0-9]*\.[0-9]*e[+-]\=[0-9]*\>"
 syn match mysqlNumber            "\<0x[abcdefABCDEF0-9]*\>"
 
 " User variables
-syn match mysqlVariable          "@[\a\d_.$]*"
+syn match mysqlVariable          "@\a*[A-Za-z0-9]*[._]*[A-Za-z0-9]*"
 
 " Comments (c-style, mysql-style and modified sql-style)
 syn region mysqlComment          start="/\*"  end="\*/"
@@ -71,28 +71,61 @@ syn match mysqlComment           "-- .*"
 syn sync ccomment mysqlComment
 
 " Column types
+"
+" This gets a bit ugly.  There are two different problems we have to
+" deal with.
+"
+" The first problem is that some keywoards like 'float' can be used
+" both with and without specifiers, i.e. 'float', 'float(1)' and
+" 'float(@var)' are all valid.  We have to account for this and we
+" also have to make sure that garbage like floatn or float_(1) is not
+" highlighted.
+"
+" The second problem is that some of these keywords are included in
+" function names.  For instance, year() is part of the name of the
+" dayofyear() function, and the dec keyword (no parenthesis) is part of
+" the name of the decode() function. 
+
 syn keyword mysqlType            tinyint smallint mediumint int integer bigint 
-syn keyword mysqlType            float double precision real decimal dec
-syn keyword mysqlType            date datetime time timestamp bit bool 
+syn keyword mysqlType            date datetime time bit bool 
 syn keyword mysqlType            tinytext mediumtext longtext text
 syn keyword mysqlType            tinyblob mediumblob longblob blob
+syn region mysqlType             start="float\W" end="."me=s-1 
+syn region mysqlType             start="float$" end="."me=s-1 
 syn region mysqlType             start="float(" end=")" contains=mysqlNumber,mysqlVariable
-syn region mysqlType             start="double\( precision\)\=(" end=")" contains=mysqlNumber,mysqlVariable
+syn region mysqlType             start="double\W" end="."me=s-1
+syn region mysqlType             start="double$" end="."me=s-1
+syn region mysqlType             start="double(" end=")" contains=mysqlNumber,mysqlVariable
+syn region mysqlType             start="double precision\W" end="."me=s-1
+syn region mysqlType             start="double precision$" end="."me=s-1
+syn region mysqlType             start="double precision(" end=")" contains=mysqlNumber,mysqlVariable
+syn region mysqlType             start="real\W" end="."me=s-1
+syn region mysqlType             start="real$" end="."me=s-1
 syn region mysqlType             start="real(" end=")" contains=mysqlNumber,mysqlVariable
 syn region mysqlType             start="numeric(" end=")" contains=mysqlNumber,mysqlVariable
-syn region mysqlType             start="dec\(imal\)\=(" end=")" contains=mysqlNumber,mysqlVariable
-syn region mysqlType             start="timestamp(" end=")" contains=mysqlNumber,mysqlVariable
-syn region mysqlType             start="year(" end=")" contains=mysqlNumber,mysqlVariable
+syn region mysqlType             start="dec\W" end="."me=s-1
+syn region mysqlType             start="dec$" end="."me=s-1
+syn region mysqlType             start="dec(" end=")" contains=mysqlNumber,mysqlVariable
+syn region mysqlType             start="decimal\W" end="."me=s-1
+syn region mysqlType             start="decimal$" end="."me=s-1
+syn region mysqlType             start="decimal(" end=")" contains=mysqlNumber,mysqlVariable
+syn region mysqlType             start="\Wtimestamp\W" end="."me=s-1
+syn region mysqlType             start="\Wtimestamp$" end="."me=s-1
+syn region mysqlType             start="\Wtimestamp(" end=")" contains=mysqlNumber,mysqlVariable
+syn region mysqlType             start="^timestamp\W" end="."me=s-1
+syn region mysqlType             start="^timestamp$" end="."me=s-1
+syn region mysqlType             start="^timestamp(" end=")" contains=mysqlNumber,mysqlVariable
+syn region mysqlType             start="\Wyear(" end=")" contains=mysqlNumber,mysqlVariable
+syn region mysqlType             start="^year(" end=")" contains=mysqlNumber,mysqlVariable
 syn region mysqlType             start="char(" end=")" contains=mysqlNumber,mysqlVariable
 syn region mysqlType             start="varchar(" end=")" contains=mysqlNumber,mysqlVariable
 syn region mysqlType             start="enum(" end=")" contains=mysqlString,mysqlVariable
-syn region mysqlType             start="set(" end=")" contains=mysqlString,mysqlVariable
+syn region mysqlType             start="\Wset(" end=")" contains=mysqlString,mysqlVariable
+syn region mysqlType             start="^set(" end=")" contains=mysqlString,mysqlVariable
 
 " Logical, string and  numeric operators
-syn keyword mysqlOperator        between not and or in like regexp rlike binary exists
-syn match mysqlOperator          "is null"
+syn keyword mysqlOperator        between not and or is in like regexp rlike binary exists
 syn region mysqlOperator         start="isnull(" end=")" contains=ALL
-syn match mysqlOperator          "is not null"
 syn region mysqlOperator         start="coalesce(" end=")" contains=ALL
 syn region mysqlOperator         start="interval(" end=")" contains=ALL
 
@@ -129,7 +162,6 @@ syn region mysqlFunction         start="bit_or(" end=")" contains=ALL
 syn region mysqlFunction         start="ceiling(" end=")" contains=ALL
 syn region mysqlFunction         start="character_length(" end=")" contains=ALL
 syn region mysqlFunction         start="char_length(" end=")" contains=ALL
-syn region mysqlFunction         start="coalesce(" end=")" contains=ALL
 syn region mysqlFunction         start="concat(" end=")" contains=ALL
 syn region mysqlFunction         start="concat_ws(" end=")" contains=ALL
 syn region mysqlFunction         start="connection_id(" end=")" contains=ALL
@@ -164,11 +196,9 @@ syn region mysqlFunction         start="get_lock(" end=")" contains=ALL
 syn region mysqlFunction         start="greatest(" end=")" contains=ALL
 syn region mysqlFunction         start="group_unique_users(" end=")" contains=ALL
 syn region mysqlFunction         start="hex(" end=")" contains=ALL
-syn region mysqlFunction         start="ifnull(" end=")" contains=ALL
 syn region mysqlFunction         start="inet_aton(" end=")" contains=ALL
 syn region mysqlFunction         start="inet_ntoa(" end=")" contains=ALL
 syn region mysqlFunction         start="instr(" end=")" contains=ALL
-syn region mysqlFunction         start="isnull(" end=")" contains=ALL
 syn region mysqlFunction         start="lcase(" end=")" contains=ALL
 syn region mysqlFunction         start="least(" end=")" contains=ALL
 syn region mysqlFunction         start="length(" end=")" contains=ALL
@@ -188,7 +218,6 @@ syn region mysqlFunction         start="min(" end=")" contains=ALL
 syn region mysqlFunction         start="mod(" end=")" contains=ALL
 syn region mysqlFunction         start="monthname(" end=")" contains=ALL
 syn region mysqlFunction         start="now(" end=")" contains=ALL
-syn region mysqlFunction         start="nullif(" end=")" contains=ALL
 syn region mysqlFunction         start="oct(" end=")" contains=ALL
 syn region mysqlFunction         start="octet_length(" end=")" contains=ALL
 syn region mysqlFunction         start="ord(" end=")" contains=ALL
@@ -257,7 +286,7 @@ if version >= 508 || !exists("did_mysql_syn_inits")
   HiLink mysqlComment            Comment
   HiLink mysqlType               Type
   HiLink mysqlOperator           Statement
-  HiLink mysqlFlow               Function
+  HiLink mysqlFlow               Statement
   HiLink mysqlFunction           Function
 
   delcommand HiLink
