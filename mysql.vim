@@ -1,60 +1,18 @@
-" # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
-" #                                                                   #
-" #            C  E  D  A  R                                          #
-" #          S O L U T I O N S       "Software done right."           #
-" #               I  N  C.                                            #
-" #                                                                   #
-" # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
-" #                                                                   #
-" # Copyright (c) 2002 Cedar Solutions, Inc.                          #
-" # All rights reserved.                                              #
-" #                                                                   #
-" # This program is free software; you can redistribute it and/or     #
-" # modify it under the terms of the GNU General Public License,      #
-" # Version 2, as published by the Free Software Foundation.          #
-" #                                                                   #
-" # This program is distributed in the hope that it will be useful,   #
-" # but WITHOUT ANY WARRANTY; without even the implied warranty of    #
-" # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.              #
-" #                                                                   #
-" # Copies of the GNU General Public License are available from       #
-" # the Free Software Foundation website, http://www.gnu.org/.        #
-" #                                                                   #
-" # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
-" #
-" # Author   : Kenneth J. Pronovici <pronovic@ieee.org>
-" # Language : Vim command language
-" # Project  : Vim files
-" # Package  : N/A
-" # Revision : $Id: mysql.vim,v 1.4 2002/04/16 17:59:16 pronovic Exp $
-" # URL      : ftp://cedar-solutions.com/software/mysql.vim
-" # Purpose  : Provides syntax highlighting for mysql files.
-" #
-" # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
+" Vim syntax file
+" Language:     mysql
+" Maintainer:   Kenneth J. Pronovici <pronovic@ieee.org>
+" Last Change:  2002 Apr 16
+" Filenames:    *.mysql
+" URL:          ftp://cedar-solutions.com/software/mysql.vim
+" Note:         The definitions below are taken from the mysql user manual as of April 2002, for version 3.23
 
-" ########
-" # Notes
-" ########
-"
-" This file defines syntax highlighting for mysql files.  It's
-" similar to the syntax for other kinds of sql, but I mostly built it
-" using the mysql design document rather than basing it on the other
-" *sql*.vim files.  However, I tried to keep highlighting consistent.
-" I've merged some ideas from the syntax file from Armin Wolfermann
-" <armin@wolfermann.org>, which was submitted to Bram slightly before I
-" wrote this initially.
-
-
-" #################
-" # Setup patterns
-" #################
-"
-" Below, what we're doing is defining each of the things we want
-" highlighted.  A 'match' is a single-line regular expression.  A
-" 'region' is a multiple-line pattern with a begin-pattern and
-" end-pattern marked.
-"
-" The definitions below are taken from the mysql user manual.
+" For version 5.x: Clear all syntax items
+" For version 6.x: Quit when a syntax file was already loaded
+if version < 600
+  syntax clear
+elseif exists("b:current_syntax")
+  finish
+endif
 
 " Always ignore case
 syn case ignore
@@ -131,10 +89,7 @@ syn region mysqlType             start="enum(" end=")" contains=mysqlString,mysq
 syn region mysqlType             start="set(" end=")" contains=mysqlString,mysqlVariable
 
 " Logical, string and  numeric operators
-syn keyword mysqlOperator         + - * / \| & << >> ~
-syn keyword mysqlOperator         = <> != <= < >= > <=> ! \|\| && 
-syn keyword mysqlOperator         \| & << >> ~
-syn keyword mysqlOperator         between not and or in like regexp rlike binary exists
+syn keyword mysqlOperator        between not and or in like regexp rlike binary exists
 syn match mysqlOperator          "is null"
 syn region mysqlOperator         start="isnull(" end=")" contains=ALL
 syn match mysqlOperator          "is not null"
@@ -283,13 +238,9 @@ syn region mysqlFunction         start="week(" end=")" contains=ALL
 syn region mysqlFunction         start="weekday(" end=")" contains=ALL
 syn region mysqlFunction         start="yearweek(" end=")" contains=ALL
 
-
-" ######################
-" # Define highlighting
-" ######################
+" Define the default highlighting.
 " For version 5.7 and earlier: only when not done already
 " For version 5.8 and later: only when an item doesn't have highlighting yet
-
 if version >= 508 || !exists("did_mysql_syn_inits")
   if version < 508
     let did_mysql_syn_inits = 1
@@ -311,11 +262,6 @@ if version >= 508 || !exists("did_mysql_syn_inits")
 
   delcommand HiLink
 endif
-
-
-" #############################
-" # Mark the syntax as defined
-" #############################
 
 let b:current_syntax = "mysql"
 
