@@ -26,7 +26,7 @@
 " # Language : Vim command language
 " # Project  : Configuration files
 " # Package  : N/A
-" # Revision : $Revision: 1.1 $
+" # Revision : $Id: mysql.vim,v 1.2 2002/04/04 20:18:13 pronovic Exp $
 " # Purpose  : Provides syntax highlighting for mysql files.
 " #
 " # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
