@@ -1,7 +1,7 @@
 " Vim syntax file
 " Language:     gtml 
 " Maintainer:   Kenneth J. Pronovici <pronovic@ieee.org>
-" Last Change:  $Date: 2002/05/03 21:49:29 $
+" Last Change:  $LastChangedDate$
 " Filenames:    *.gtml
 " URL:          ftp://cedar-solutions.com/software/gtml.vim
 "
