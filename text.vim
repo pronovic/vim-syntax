@@ -1,33 +1,31 @@
 " # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
-" #                                                                   #
-" #            C  E  D  A  R                                          #
-" #          S O L U T I O N S       "Software done right."           #
-" #               I  N  C.                                            #
-" #                                                                   #
+" #
+" #              C E D A R
+" #          S O L U T I O N S       "Software done right."
+" #           S O F T W A R E
+" #
 " # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
-" #                                                                   #
-" # Copyright (c) 2002 Cedar Solutions, Inc.                          #
-" # All rights reserved.                                              #
-" #                                                                   #
-" # This program is free software; you can redistribute it and/or     #
-" # modify it under the terms of the GNU General Public License,      #
-" # Version 2, as published by the Free Software Foundation.          #
-" #                                                                   #
-" # This program is distributed in the hope that it will be useful,   #
-" # but WITHOUT ANY WARRANTY; without even the implied warranty of    #
-" # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.              #
-" #                                                                   #
-" # Copies of the GNU General Public License are available from       #
-" # the Free Software Foundation website, http://www.gnu.org/.        #
-" #                                                                   #
+" #
+" # Copyright (c) 2003 Kenneth J. Pronovici.
+" # All rights reserved.
+" #
+" # This program is free software; you can redistribute it and/or
+" # modify it under the terms of the GNU General Public License,
+" # Version 2, as published by the Free Software Foundation.
+" #
+" # This program is distributed in the hope that it will be useful,
+" # but WITHOUT ANY WARRANTY; without even the implied warranty of
+" # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+" #
+" # Copies of the GNU General Public License are available from
+" # the Free Software Foundation website, http://www.gnu.org/.
+" #
 " # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 " #
 " # Author   : Kenneth J. Pronovici <pronovic@ieee.org>
 " # Language : Vim command language
-" # Project  : Vim files
-" # Package  : N/A
-" # Revision : $Id: text.vim,v 1.4 2002/04/16 17:59:16 pronovic Exp $
-" # URL      : Within ftp://cedar-solutions.com/software/vim.tar.gz
+" # Project  : Vim syntax definitions
+" # Revision : $Id: text.vim,v 1.5 2003/09/08 17:35:54 pronovic Exp $
 " # Purpose  : Provides a custom text-syntax definition
 " #
 " # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
