@@ -1,7 +1,7 @@
 " Vim syntax file
 " Language:     gtml 
 " Maintainer:   Kenneth J. Pronovici <pronovic@ieee.org>
-" Last Change:  $Date: 2002/05/03 19:10:43 $
+" Last Change:  $Date: 2002/05/03 21:49:29 $
 " Filenames:    *.gtml
 " URL:          ftp://cedar-solutions.com/software/gtml.vim
 "
@@ -53,11 +53,33 @@ endif
 " Explain to html.vim which preprocessor-language things should be highlighted
 syn cluster htmlPreproc add=@gtmlTop
 
-" Define the GTML regions
-syn region gtmlStatement   start="^\s*#\(define\|include\)" end="$"
-syn region gtmlDefine      start="<<" end=">>"
+" First, commands (we ignore the \ line continuation character, as I don't know how to deal with it)
+syn region gtmlCommand   start="^#include" end="$"
+syn region gtmlCommand   start="^#define" end="$"
+syn region gtmlCommand   start="^#newdefine" end="$"
+syn region gtmlCommand   start="^#undef" end="$"
+syn region gtmlCommand   start="^#timestamp" end="$"
+syn region gtmlCommand   start="^#mtimestamp" end="$"
+syn region gtmlCommand   start="^#literal" end="$"
+syn region gtmlCommand   start="^#definechar" end="$"
+syn region gtmlCommand   start="^#entities" end="$"
+syn region gtmlCommand   start="^#if" end="$"
+syn region gtmlCommand   start="^#ifdef" end="$"
+syn region gtmlCommand   start="^#ifndef" end="$"
+syn region gtmlCommand   start="^#elsif" end="$"
+syn region gtmlCommand   start="^#elsifdef" end="$"
+syn region gtmlCommand   start="^#elsifndef" end="$"
+syn region gtmlCommand   start="^#else" end="$"
+syn region gtmlCommand   start="^#endif" end="$"
+syn region gtmlCommand   start="^#compress" end="$"
+syn region gtmlCommand   start="^#sitemap" end="$"
+syn region gtmlCommand   start="^#toc" end="$"
 
-syn cluster gtmlTop contains=gtmlStatement,gtmlDefine
+" Then, the actual contants in the code
+syn region gtmlConstant  start="<<" end=">>"
+
+" Then, list what @gtmlTop contains
+syn cluster gtmlTop contains=gtmlCommand,gtmlConstant
 
 " Set up default highlighting. Almost all of this is done in the HTML syntax file
 if version >= 508 || !exists("did_gtml_syn_inits")
@@ -68,8 +90,8 @@ if version >= 508 || !exists("did_gtml_syn_inits")
       com -nargs=+ HiLink hi def link <args>
    endif
 
-   HiLink gtmlStatement Comment
-   HiLink gtmlDefine    Comment
+   HiLink gtmlCommand Comment
+   HiLink gtmlConstant    Comment
 
    delcommand HiLink
 endif
