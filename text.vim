@@ -26,8 +26,8 @@
 " # Language : Vim command language
 " # Project  : Vim files
 " # Package  : N/A
-" # Revision : $Id: text.vim,v 1.3 2002/04/16 17:57:34 pronovic Exp $
-" # URL      : Within ftp://cedar-solutions.com/software/vim/vim.tar.gz
+" # Revision : $Id: text.vim,v 1.4 2002/04/16 17:59:16 pronovic Exp $
+" # URL      : Within ftp://cedar-solutions.com/software/vim.tar.gz
 " # Purpose  : Provides a custom text-syntax definition
 " #
 " # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #

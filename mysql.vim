@@ -26,8 +26,8 @@
 " # Language : Vim command language
 " # Project  : Vim files
 " # Package  : N/A
-" # Revision : $Id: mysql.vim,v 1.3 2002/04/16 17:57:34 pronovic Exp $
-" # URL      : ftp://cedar-solutions.com/software/vim/mysql.vim
+" # Revision : $Id: mysql.vim,v 1.4 2002/04/16 17:59:16 pronovic Exp $
+" # URL      : ftp://cedar-solutions.com/software/mysql.vim
 " # Purpose  : Provides syntax highlighting for mysql files.
 " #
 " # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
