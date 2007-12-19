@@ -67,7 +67,7 @@ syn match mysqlVariable          "@\a*[A-Za-z0-9]*[._]*[A-Za-z0-9]*"
 " Comments (c-style, mysql-style and modified sql-style)
 syn region mysqlComment          start="/\*"  end="\*/"
 syn match mysqlComment           "#.*"
-syn match mysqlComment           "-- .*"
+syn match mysqlComment           "--\_s.*"
 syn sync ccomment mysqlComment
 
 " Column types
