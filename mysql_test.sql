@@ -19,7 +19,7 @@ match max_rows middleint min_rows minute minute_second modify month myisam
 natural no 
 on optimize option optionally order outer outfile
 pack_keys partial password primary privileges procedure process processlist
-read references reload rename replace restrict returns revoke row rows
+read references reload rename replace restrict returns revoke row rows right
 second select show shutdown soname sql_big_result sql_big_selects sql_big_tables sql_log_off
 sql_log_update sql_low_priority_updates sql_select_limit sql_small_result sql_warnings starting
 status straight_join string
@@ -44,6 +44,8 @@ false null true
 4.5E+12
 0x25
 0x3C
+e
+E
 
 # Variables
 @ken

@@ -25,7 +25,7 @@
 " # Author   : Kenneth J. Pronovici <pronovic@ieee.org>
 " # Language : Vim command language
 " # Project  : Vim syntax definitions
-" # Revision : $Id: text.vim,v 1.5 2003/09/08 17:35:54 pronovic Exp $
+" # Revision : $Id$
 " # Purpose  : Provides a custom text-syntax definition
 " #
 " # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
