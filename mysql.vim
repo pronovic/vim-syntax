@@ -75,7 +75,7 @@ syn sync ccomment mysqlComment
 " This gets a bit ugly.  There are two different problems we have to
 " deal with.
 "
-" The first problem is that some keywoards like 'float' can be used
+" The first problem is that some keywords like 'float' can be used
 " both with and without specifiers, i.e. 'float', 'float(1)' and
 " 'float(@var)' are all valid.  We have to account for this and we
 " also have to make sure that garbage like floatn or float_(1) is not
