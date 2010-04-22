@@ -53,6 +53,8 @@ E
 @test3.99431
 @test3.a99431
 @test3a.a99431 
+@variable_underscore
+@variable_multiple_underscores_and_more
 
 # Comments
 #Comment (should work)
