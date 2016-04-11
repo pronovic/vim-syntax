@@ -30,7 +30,7 @@ syn keyword mysqlKeyword         global grant grants group
 syn keyword mysqlKeyword         having heap high_priority hosts hour hour_minute hour_second
 syn keyword mysqlKeyword         identified ignore index infile inner insert insert_id into isam
 syn keyword mysqlKeyword         join
-syn keyword mysqlKeyword         key keys kill last_insert_id leading left limit lines load local lock logs long 
+syn keyword mysqlKeyword         key keys kill last_insert_id leading left limit lines load local lock logs long
 syn keyword mysqlKeyword         low_priority
 syn keyword mysqlKeyword         match max_rows middleint min_rows minute minute_second modify month myisam
 syn keyword mysqlKeyword         natural no
@@ -87,14 +87,14 @@ syn sync ccomment mysqlComment
 " The second problem is that some of these keywords are included in
 " function names.  For instance, year() is part of the name of the
 " dayofyear() function, and the dec keyword (no parenthesis) is part of
-" the name of the decode() function. 
+" the name of the decode() function.
 
-syn keyword mysqlType            tinyint smallint mediumint int integer bigint 
-syn keyword mysqlType            date datetime time bit bool 
+syn keyword mysqlType            tinyint smallint mediumint int integer bigint
+syn keyword mysqlType            date datetime time bit bool
 syn keyword mysqlType            tinytext mediumtext longtext text
 syn keyword mysqlType            tinyblob mediumblob longblob blob
-syn region mysqlType             start="float\W" end="."me=s-1 
-syn region mysqlType             start="float$" end="."me=s-1 
+syn region mysqlType             start="float\W" end="."me=s-1
+syn region mysqlType             start="float$" end="."me=s-1
 syn region mysqlType             start="float(" end=")" contains=mysqlNumber,mysqlVariable
 syn region mysqlType             start="double\W" end="."me=s-1
 syn region mysqlType             start="double$" end="."me=s-1
@@ -142,12 +142,12 @@ syn region mysqlFlow             start="if("       end=")"  contains=ALL
 "
 " I'm leery of just defining keywords for functions, since according to the MySQL manual:
 "
-"     Function names do not clash with table or column names. For example, ABS is a 
-"     valid column name. The only restriction is that for a function call, no spaces 
-"     are allowed between the function name and the `(' that follows it. 
+"     Function names do not clash with table or column names. For example, ABS is a
+"     valid column name. The only restriction is that for a function call, no spaces
+"     are allowed between the function name and the `(' that follows it.
 "
-" This means that if I want to highlight function names properly, I have to use a 
-" region to define them, not just a keyword.  This will probably cause the syntax file 
+" This means that if I want to highlight function names properly, I have to use a
+" region to define them, not just a keyword.  This will probably cause the syntax file
 " to load more slowly, but at least it will be 'correct'.
 
 syn region mysqlFunction         start="abs(" end=")" contains=ALL
