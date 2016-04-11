@@ -18,7 +18,7 @@ endif
 syn case ignore
 
 " General keywords which don't fall into other categories
-syn keyword mysqlKeyword         action add after aggregate all alter as asc auto_increment avg avg_row_length
+syn keyword mysqlKeyword         action add after aggregate all alter as asc auto_increment avg_row_length
 syn keyword mysqlKeyword         both by
 syn keyword mysqlKeyword         cascade change character check checksum column columns comment constraint create cross
 syn keyword mysqlKeyword         current_date current_time current_timestamp
@@ -63,6 +63,9 @@ syn match mysqlNumber            "\<0x[abcdefABCDEF0-9]*\>"
 
 " User variables
 syn match mysqlVariable          "@\a*[A-Za-z0-9]*\([._]*[A-Za-z0-9]\)*"
+
+" Escaped column names
+syn match mysqlEscaped           "`[^`]*`"
 
 " Comments (c-style, mysql-style and modified sql-style)
 syn region mysqlComment          start="/\*"  end="\*/"
@@ -154,6 +157,7 @@ syn region mysqlFunction         start="ascii(" end=")" contains=ALL
 syn region mysqlFunction         start="asin(" end=")" contains=ALL
 syn region mysqlFunction         start="atan(" end=")" contains=ALL
 syn region mysqlFunction         start="atan2(" end=")" contains=ALL
+syn region mysqlFunction         start="avg(" end=")" contains=ALL
 syn region mysqlFunction         start="benchmark(" end=")" contains=ALL
 syn region mysqlFunction         start="bin(" end=")" contains=ALL
 syn region mysqlFunction         start="bit_and(" end=")" contains=ALL

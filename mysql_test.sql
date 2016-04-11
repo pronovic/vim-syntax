@@ -1,7 +1,7 @@
 # vim: set ft=mysql:
 
 # Keywords
-action add after aggregate all alter as asc auto_increment avg avg_row_length
+action add after aggregate all alter as asc auto_increment avg_row_length
 both by
 cascade change character check checksum column columns comment constraint create cross
 current_date current_time current_timestamp
@@ -32,6 +32,12 @@ zerofill
 
 # Special
 false null true
+
+# Column names, including those escaped with backticks
+WHATEVER
+whatever
+`whatever`
+`time&date` 
 
 # Number
 1581239180
@@ -121,6 +127,7 @@ ascii(1, 1.3, 2E3, 0x12, 'a', @variable, null)
 asin(1, 1.3, 2E3, 0x12, 'a', @variable, null)
 atan(1, 1.3, 2E3, 0x12, 'a', @variable, null)
 atan2(1, 1.3, 2E3, 0x12, 'a', @variable, null)
+avg(1, 1.3, 2E3, 0x12, 'a', @variable, null)
 benchmark(1, 1.3, 2E3, 0x12, 'a', @variable, null)
 bin(1, 1.3, 2E3, 0x12, 'a', @variable, null)
 bit_and(1, 1.3, 2E3, 0x12, 'a', @variable, null)
