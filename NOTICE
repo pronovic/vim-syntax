@@ -1,0 +1,3 @@
+The mysql.vim and mysql_test.sql files are included in the Vim distribution and
+are licensed under the same terms as Vim itself. All other files are released
+under the MIT license.
